@@ -125,6 +125,6 @@ st.sidebar.markdown("""
 st.subheader("📊 Feature Importance in NBA Shot Prediction")
 feature_importance_path = "feature_importance.png"
 if os.path.exists(feature_importance_path):
-    st.image(Image.open(feature_importance_path), caption="Feature Importance", use_column_width=True)
+    st.image(Image.open(feature_importance_path), caption="Feature Importance", use_container_width=True)
 else:
     st.warning("⚠️ Feature importance chart not found. Run the script to generate it.")
