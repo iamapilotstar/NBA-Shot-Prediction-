@@ -128,3 +128,17 @@ if os.path.exists(feature_importance_path):
     st.image(Image.open(feature_importance_path), caption="Feature Importance", use_container_width=True)
 else:
     st.warning("⚠️ Feature importance chart not found. Run the script to generate it.")
+st.markdown("""
+### 📊 Understanding our Feature Importance graph:
+
+- **Why is `SHOT_DIST` the most dominant feature?**  
+  In basketball, shot distance plays a **key role** in determining shot success. Closer shots are **more likely to go in** as opposed to mid range or long-range shots.  
+   
+- **What about `CLOSE_DEF_DIST`?**  
+  The distance of the defender plays another signgicant role in shot sucess, if a defender is **far away**, the player has **more space as well as time to take a good shot**.
+
+- **Does the model only rely on distance?**  
+  No! Other factors like **shot difficulty, shot clock, and player attributes** still contribute to the overall prediction.
+
+💡 **Takeaway:** This model reflects how **basketball shot** are affected based on various features such as shot distance and defender proximity while still considering in-game context.
+""")
