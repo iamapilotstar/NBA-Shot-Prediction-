@@ -68,7 +68,11 @@ with col1:
     touch_time = st.slider("Touch Time (sec)", 0, 10, 2)
     game_minutes = st.slider("Game Minutes", 0, 48, 24)
 
-    if st.button("Predict Shot Outcome"):
+# 📌 Side-by-side buttons
+col1, col2 = st.columns([3, 1])
+
+with col1:
+    if st.button("🏀 Predict Shot Outcome"):
         input_data = np.array([[  
             float(shot_dist), float(close_def_dist), float(shot_difficulty), int(shot_number),
             int(age), int(experience_num), float(player_height), float(player_weight), float(bmi),
@@ -103,16 +107,21 @@ with col1:
             fig.update_layout(showlegend=False)
             st.plotly_chart(fig)
 
+# 📌 Reset Button
+with col2:
+    if st.button("🔄 Reset Inputs"):
+        st.experimental_rerun()
+
 # 📌 Add "About" Section in Sidebar
 st.sidebar.header("📌 About")
 st.sidebar.info("""
-This application predicts NBA shot outcomes based on contextual and in game parameters using **Machine Learning**.
-This will help teams determine what position such as shot distance, shot difficulty and other contextual factors players need to use to gain a good advantage in game.
+This application predicts NBA shot outcomes based on contextual and in-game parameters using **Machine Learning**.
+This will help teams determine what position such as shot distance, shot difficulty, and other contextual factors players need to use to gain a good advantage in a game.
 
                        
 ### **Model Information**
 - **Algorithm:** Gradient Boosting Classifier
-- **Trained on:** NBA Shot and information Dataset              
+- **Trained on:** NBA Shot and Information Dataset              
 """)
 
 # 📌 Add Model Performance Metrics
@@ -121,24 +130,26 @@ st.sidebar.markdown("""
 - **Algorithm Used:** Gradient Boosting
 """)
 
-# 📌 Display Feature Importance Chart
+# 📌 Display Feature Importance Chart with a Smaller Image
 st.subheader("📊 Feature Importance in NBA Shot Prediction")
 feature_importance_path = "feature_importance.png"
 if os.path.exists(feature_importance_path):
-    st.image(Image.open(feature_importance_path), caption="Feature Importance", use_container_width=True)
+    st.image(Image.open(feature_importance_path), caption="Feature Importance", width=500)  # 👈 Reduced size
 else:
     st.warning("⚠️ Feature importance chart not found. Run the script to generate it.")
+
+# 📌 Explanation Below Feature Importance
 st.markdown("""
-### 📊 Understanding our Feature Importance graph:
+### 📊 Understanding our Feature Importance Graph:
 
 - **Why is `SHOT_DIST` the most dominant feature?**  
-  In basketball, shot distance plays a **key role** in determining shot success. Closer shots are **more likely to go in** as opposed to mid range or long-range shots.  
+  In basketball, shot distance plays a **key role** in determining shot success. Closer shots are **more likely to go in** compared to mid-range or long-range shots.  
    
 - **What about `CLOSE_DEF_DIST`?**  
-  The distance of the defender plays another signgicant role in shot sucess, if a defender is **far away**, the player has **more space as well as time to take a good shot**.
+  The distance of the defender plays another significant role in shot success. If a defender is **far away**, the player has **more space and time to take a good shot**.
 
 - **Does the model only rely on distance?**  
   No! Other factors like **shot difficulty, shot clock, and player attributes** still contribute to the overall prediction.
 
-💡 **Takeaway:** This model reflects how **basketball shot** are affected based on various features such as shot distance and defender proximity while still considering in-game context.
+💡 **Takeaway:** This model reflects how **basketball shots** are affected based on various features such as shot distance and defender proximity while still considering in-game context.
 """)
