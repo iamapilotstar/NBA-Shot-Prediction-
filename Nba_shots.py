@@ -85,8 +85,8 @@ with col1:
             probabilities = model.predict_proba(input_data_scaled)[0]
 
             outcome = "Made" if prediction[0] == 1 else "Missed"
-            st.success(f"Predicted Shot Outcome: **{outcome}**")
-            st.write(f"### Probability of Making the Shot: {probabilities[1] * 100:.2f}%")
+            st.success(f"🏀 Predicted Shot Outcome: **{outcome}**")
+            st.write(f"### 📊 Probability of Making the Shot: {probabilities[1] * 100:.2f}%")
             
             # 📊 Probability Graph
             prob_df = pd.DataFrame({
