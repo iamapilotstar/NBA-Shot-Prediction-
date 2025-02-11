@@ -6,14 +6,12 @@ import pandas as pd
 import plotly.express as px
 from PIL import Image
 
-# 📌 Set page config
 st.set_page_config(
     page_title="NBA Shot Prediction",
     page_icon="🏀",
     layout="wide"
 )
 
-# 📌 Function to Load Model & Scaler
 @st.cache_data
 def load_model_and_scaler():
     try:
@@ -30,16 +28,13 @@ def load_model_and_scaler():
         st.error(f"⚠️ Error: {e}. Ensure the model and scaler exist in the correct directory.")
         st.stop()
 
-# Load the model and scaler
 model, scaler = load_model_and_scaler()
 
-# 📌 Title and description
 st.title("🏀 NBA Shot Prediction App")
 st.markdown("""
 This app predicts the probability of a shot being made in an NBA game based on various shot and contextual factors.
 """)
 
-# 📌 Create layout
 col1, col2 = st.columns([2, 1])
 
 with col1:
@@ -68,7 +63,6 @@ with col1:
     touch_time = st.slider("Touch Time (sec)", 0, 10, 2)
     game_minutes = st.slider("Game Minutes", 0, 48, 24)
 
-# 📌 Side-by-side buttons
 col1, col2 = st.columns([3, 1])
 
 with col1:
@@ -92,7 +86,6 @@ with col1:
             st.success(f"🏀 Predicted Shot Outcome: **{outcome}**")
             st.write(f"### 📊 Probability of Making the Shot: {probabilities[1] * 100:.2f}%")
             
-            # 📊 Probability Graph
             prob_df = pd.DataFrame({
                 'Outcome': ['Missed', 'Made'],
                 'Probability': probabilities * 100
@@ -107,12 +100,10 @@ with col1:
             fig.update_layout(showlegend=False)
             st.plotly_chart(fig)
 
-# 📌 Reset Button
 with col2:
     if st.button("🔄 Reset Inputs"):
         st.experimental_rerun()
 
-# 📌 Add "About" Section in Sidebar
 st.sidebar.header("📌 About")
 st.sidebar.info("""
 This application predicts NBA shot outcomes based on contextual and in-game parameters using **Machine Learning**.
@@ -124,21 +115,18 @@ This will help teams determine what position such as shot distance, shot difficu
 - **Trained on:** NBA Shot and Information Dataset              
 """)
 
-# 📌 Add Model Performance Metrics
 st.sidebar.header("📊 Model Performance")
 st.sidebar.markdown("""
 - **Algorithm Used:** Gradient Boosting
 """)
 
-# 📌 Display Feature Importance Chart with a Smaller Image
 st.subheader("📊 Feature Importance in NBA Shot Prediction")
 feature_importance_path = "feature_importance.png"
 if os.path.exists(feature_importance_path):
-    st.image(Image.open(feature_importance_path), caption="Feature Importance", width=500)  # 👈 Reduced size
+    st.image(Image.open(feature_importance_path), caption="Feature Importance", width=500)  
 else:
     st.warning("⚠️ Feature importance chart not found. Run the script to generate it.")
 
-# 📌 Explanation Below Feature Importance
 st.markdown("""
 ### 📊 Understanding our Feature Importance Graph:
 
