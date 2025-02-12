@@ -6,12 +6,14 @@ import pandas as pd
 import plotly.express as px
 from PIL import Image
 
+# Set up Streamlit page
 st.set_page_config(
     page_title="NBA Shot Prediction",
     page_icon="🏀",
     layout="wide"
 )
 
+# Load model and scaler with error handling
 @st.cache_data
 def load_model_and_scaler():
     model_path = "Gradient Boosting.pkl"
@@ -32,15 +34,16 @@ def load_model_and_scaler():
     
     return model, scaler
 
-
+# Load model and scaler
 model, scaler = load_model_and_scaler()
 
+# Title and app description
 st.title("🏀 NBA Shot Prediction App")
 st.markdown("""
 This app predicts the probability of a shot being made in an NBA game based on various shot and contextual factors.
 """)
 
-
+# Layout for input fields
 col1, col2 = st.columns([2, 1])
 
 with col1:
@@ -60,7 +63,8 @@ with col1:
     home_team_code = st.radio("Home Team", ["Home", "Away"])
     home_team_code = 1 if home_team_code == "Home" else 0
 
-    away_team_code = 1 if home_team_code == 0 else 0  
+    away_team_code = 1 if home_team_code == 0 else 0  # Ensuring correct team coding
+
     match_location = st.radio("Match Location", ["Home", "Away"])
     match_location = 1 if match_location == "Home" else 0
 
@@ -68,6 +72,7 @@ with col1:
     touch_time = st.slider("Touch Time (sec)", 0, 10, 2)
     game_minutes = st.slider("Game Minutes", 0, 48, 24)
 
+# Prediction button and result display
 col1, col2 = st.columns([3, 1])
 
 with col1:
@@ -79,9 +84,6 @@ with col1:
             int(home_team_code), int(away_team_code), int(match_location),
             float(shot_clock_remaining), float(touch_time), float(game_minutes)
         ]])
-
-    
-        st.write(f"🔍 Model expects {model.n_features_in_} features, input shape: {input_data.shape}")
 
         try:
             input_data_scaled = scaler.transform(input_data)
@@ -96,7 +98,7 @@ with col1:
                 st.success(f"🏀 Predicted Shot Outcome: **{outcome}**")
                 st.write(f"### 📊 Probability of Making the Shot: {probabilities[1] * 100:.2f}%")
 
-               
+                # Create bar chart for probabilities
                 prob_df = pd.DataFrame({
                     'Outcome': ['Missed', 'Made'],
                     'Probability': probabilities * 100
@@ -114,14 +116,14 @@ with col1:
         except Exception as e:
             st.error(f"⚠️ Error in prediction: {e}")
 
-
+# Reset button to clear all inputs
 with col2:
     if st.button("🔄 Reset Inputs"):
         for key in st.session_state.keys():
             del st.session_state[key]
         st.rerun()
 
-
+# Sidebar Info
 st.sidebar.header("📌 About")
 st.sidebar.info("""
 This application predicts NBA shot outcomes based on contextual and in-game parameters using **Machine Learning**.
@@ -138,6 +140,7 @@ st.sidebar.markdown("""
 - **Algorithm Used:** Gradient Boosting
 """)
 
+# Feature Importance Section
 st.subheader("📊 Feature Importance in NBA Shot Prediction")
 feature_importance_path = "feature_importance.png"
 if os.path.exists(feature_importance_path):
