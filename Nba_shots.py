@@ -165,5 +165,3 @@ st.markdown("""
 
 💡 **Takeaway:** This model reflects how **basketball shots** are affected based on various features such as shot distance and defender proximity while still considering in-game context.
 """)
-
-So the reset inputs is supposed to reset it but here its not resetting but making just hiding the predcited result when clicked
