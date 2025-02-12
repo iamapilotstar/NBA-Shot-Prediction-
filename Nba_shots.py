@@ -60,10 +60,9 @@ with col1:
     player_weight = st.slider("Player Weight (kg)", 60, 150, 90)
     bmi = player_weight / ((player_height / 100) ** 2)
 
-    home_team_code = st.radio("Home Team", ["Home", "Away"])
-    home_team_code = 1 if home_team_code == "Home" else 0
+    home_team_code = 0 
 
-    away_team_code = 1 if home_team_code == 0 else 0  # Ensuring correct team coding
+    away_team_code = 1 - home_team_code 
 
     match_location = st.radio("Match Location", ["Home", "Away"])
     match_location = 1 if match_location == "Home" else 0
