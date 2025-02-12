@@ -118,9 +118,21 @@ with col1:
 # Reset button to clear all inputs
 with col2:
     if st.button("🔄 Reset Inputs"):
-        for key in st.session_state.keys():
-            del st.session_state[key]
-        st.rerun()
+    
+    st.session_state["shot_dist"] = 15
+    st.session_state["close_def_dist"] = 3
+    st.session_state["shot_difficulty"] = 5
+    st.session_state["shot_number"] = 5
+    st.session_state["age"] = 25
+    st.session_state["experience_num"] = 0
+    st.session_state["player_height"] = 200
+    st.session_state["player_weight"] = 90
+    st.session_state["match_location"] = "Home"
+    st.session_state["shot_clock_remaining"] = 10
+    st.session_state["touch_time"] = 2
+    st.session_state["game_minutes"] = 24
+
+    st.rerun()  
 
 # Sidebar Info
 st.sidebar.header("📌 About")
