@@ -37,21 +37,6 @@ def load_model_and_scaler():
 # Load model and scaler
 model, scaler = load_model_and_scaler()
 
-# Initialize session state for input fields
-if "shot_dist" not in st.session_state:
-    st.session_state["shot_dist"] = 15
-    st.session_state["close_def_dist"] = 3
-    st.session_state["shot_difficulty"] = 5
-    st.session_state["shot_number"] = 5
-    st.session_state["age"] = 25
-    st.session_state["experience_num"] = 0
-    st.session_state["player_height"] = 200
-    st.session_state["player_weight"] = 90
-    st.session_state["match_location"] = "Home"
-    st.session_state["shot_clock_remaining"] = 10
-    st.session_state["touch_time"] = 2
-    st.session_state["game_minutes"] = 24
-
 # Title and app description
 st.title("🏀 NBA Shot Prediction App")
 st.markdown("""
@@ -64,25 +49,27 @@ col1, col2 = st.columns([2, 1])
 with col1:
     st.subheader("Shot Specifications")
 
-    shot_dist = st.slider("Shot Distance (ft)", 0, 40, st.session_state["shot_dist"])
-    close_def_dist = st.slider("Closest Defender Distance (ft)", 0, 10, st.session_state["close_def_dist"])
-    shot_difficulty = st.slider("Shot Difficulty (1-10)", 1, 10, st.session_state["shot_difficulty"])
-    shot_number = st.slider("Shot Number in Game", 1, 20, st.session_state["shot_number"])
+    shot_dist = st.slider("Shot Distance (ft)", 0, 40, 15)
+    close_def_dist = st.slider("Closest Defender Distance (ft)", 0, 10, 3)
+    shot_difficulty = st.slider("Shot Difficulty (1-10)", 1, 10, 5)
+    shot_number = st.slider("Shot Number in Game", 1, 20, 5)
 
-    age = st.slider("Player Age", 18, 40, st.session_state["age"])
-    experience_num = st.selectbox("Years of Experience", list(range(21)), index=st.session_state["experience_num"])
-    player_height = st.slider("Player Height (cm)", 160, 220, st.session_state["player_height"])
-    player_weight = st.slider("Player Weight (kg)", 60, 150, st.session_state["player_weight"])
+    age = st.slider("Player Age", 18, 40, 25)
+    experience_num = st.selectbox("Years of Experience", list(range(21)))
+    player_height = st.slider("Player Height (cm)", 160, 220, 200)
+    player_weight = st.slider("Player Weight (kg)", 60, 150, 90)
     bmi = player_weight / ((player_height / 100) ** 2)
 
-    # Hidden team-related features
-    home_team_code = 0  # Default hidden value
-    away_team_code = 1 - home_team_code  # Automatically opposite
+    home_team_code = 0 
 
-    match_location = st.radio("Match Location", ["Home", "Away"], index=0 if st.session_state["match_location"] == "Home" else 1)
-    shot_clock_remaining = st.slider("Shot Clock Remaining (sec)", 0, 24, st.session_state["shot_clock_remaining"])
-    touch_time = st.slider("Touch Time (sec)", 0, 10, st.session_state["touch_time"])
-    game_minutes = st.slider("Game Minutes", 0, 48, st.session_state["game_minutes"])
+    away_team_code = 1 - home_team_code 
+
+    match_location = st.radio("Match Location", ["Home", "Away"])
+    match_location = 1 if match_location == "Home" else 0
+
+    shot_clock_remaining = st.slider("Shot Clock Remaining (sec)", 0, 24, 10)
+    touch_time = st.slider("Touch Time (sec)", 0, 10, 2)
+    game_minutes = st.slider("Game Minutes", 0, 48, 24)
 
 # Prediction button and result display
 col1, col2 = st.columns([3, 1])
@@ -100,27 +87,30 @@ with col1:
         try:
             input_data_scaled = scaler.transform(input_data)
 
-            prediction = model.predict(input_data_scaled)
-            probabilities = model.predict_proba(input_data_scaled)[0]
+            if input_data_scaled.shape[1] != model.n_features_in_:
+                st.error(f"⚠️ Model expects {model.n_features_in_} features, but received {input_data_scaled.shape[1]}.")
+            else:
+                prediction = model.predict(input_data_scaled)
+                probabilities = model.predict_proba(input_data_scaled)[0]
 
-            outcome = "Made" if prediction[0] == 1 else "Missed"
-            st.success(f"🏀 Predicted Shot Outcome: **{outcome}**")
-            st.write(f"### 📊 Probability of Making the Shot: {probabilities[1] * 100:.2f}%")
+                outcome = "Made" if prediction[0] == 1 else "Missed"
+                st.success(f"🏀 Predicted Shot Outcome: **{outcome}**")
+                st.write(f"### 📊 Probability of Making the Shot: {probabilities[1] * 100:.2f}%")
 
-            # Create bar chart for probabilities
-            prob_df = pd.DataFrame({
-                'Outcome': ['Missed', 'Made'],
-                'Probability': probabilities * 100
-            })
-            
-            fig = px.bar(prob_df, x='Outcome', y='Probability',
-                         title='Prediction Probabilities',
-                         labels={'Probability': 'Probability (%)'},
-                         color='Probability',
-                         color_continuous_scale='Viridis')
-            
-            fig.update_layout(showlegend=False)
-            st.plotly_chart(fig)
+                # Create bar chart for probabilities
+                prob_df = pd.DataFrame({
+                    'Outcome': ['Missed', 'Made'],
+                    'Probability': probabilities * 100
+                })
+                
+                fig = px.bar(prob_df, x='Outcome', y='Probability',
+                             title='Prediction Probabilities',
+                             labels={'Probability': 'Probability (%)'},
+                             color='Probability',
+                             color_continuous_scale='Viridis')
+                
+                fig.update_layout(showlegend=False)
+                st.plotly_chart(fig)
 
         except Exception as e:
             st.error(f"⚠️ Error in prediction: {e}")
@@ -128,21 +118,21 @@ with col1:
 # Reset button to clear all inputs
 with col2:
     if st.button("🔄 Reset Inputs"):
-        # Reset session state variables
-        st.session_state["shot_dist"] = 15
-        st.session_state["close_def_dist"] = 3
-        st.session_state["shot_difficulty"] = 5
-        st.session_state["shot_number"] = 5
-        st.session_state["age"] = 25
-        st.session_state["experience_num"] = 0
-        st.session_state["player_height"] = 200
-        st.session_state["player_weight"] = 90
-        st.session_state["match_location"] = "Home"
-        st.session_state["shot_clock_remaining"] = 10
-        st.session_state["touch_time"] = 2
-        st.session_state["game_minutes"] = 24
+    
+    st.session_state["shot_dist"] = 15
+    st.session_state["close_def_dist"] = 3
+    st.session_state["shot_difficulty"] = 5
+    st.session_state["shot_number"] = 5
+    st.session_state["age"] = 25
+    st.session_state["experience_num"] = 0
+    st.session_state["player_height"] = 200
+    st.session_state["player_weight"] = 90
+    st.session_state["match_location"] = "Home"
+    st.session_state["shot_clock_remaining"] = 10
+    st.session_state["touch_time"] = 2
+    st.session_state["game_minutes"] = 24
 
-        st.rerun()  # Refresh UI
+    st.rerun()  
 
 # Sidebar Info
 st.sidebar.header("📌 About")
@@ -172,3 +162,18 @@ else:
         st.image(uploaded_file, caption="Uploaded Feature Importance", width=700)
     else:
         st.warning("⚠️ Feature importance chart not found. Upload the image manually if needed.")
+
+st.markdown("""
+### 📊 Understanding our Feature Importance Graph:
+
+- **Why is SHOT_DIST the most dominant feature?**  
+  In basketball, shot distance plays a **key role** in determining shot success. Closer shots are **more likely to go in** compared to mid-range or long-range shots.  
+   
+- **What about CLOSE_DEF_DIST?**  
+  The distance of the defender plays another significant role in shot success. If a defender is **far away**, the player has **more space and time to take a good shot**.
+
+- **Does the model only rely on distance?**  
+  No! Other factors like **shot difficulty, shot clock, and player attributes** still contribute to the overall prediction.
+
+💡 **Takeaway:** This model reflects how **basketball shots** are affected based on various features such as shot distance and defender proximity while still considering in-game context.
+""")
