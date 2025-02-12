@@ -118,21 +118,9 @@ with col1:
 # Reset button to clear all inputs
 with col2:
     if st.button("🔄 Reset Inputs"):
-    
-    st.session_state["shot_dist"] = 15
-    st.session_state["close_def_dist"] = 3
-    st.session_state["shot_difficulty"] = 5
-    st.session_state["shot_number"] = 5
-    st.session_state["age"] = 25
-    st.session_state["experience_num"] = 0
-    st.session_state["player_height"] = 200
-    st.session_state["player_weight"] = 90
-    st.session_state["match_location"] = "Home"
-    st.session_state["shot_clock_remaining"] = 10
-    st.session_state["touch_time"] = 2
-    st.session_state["game_minutes"] = 24
-
-    st.rerun()  
+        for key in st.session_state.keys():
+            del st.session_state[key]
+        st.rerun()
 
 # Sidebar Info
 st.sidebar.header("📌 About")
@@ -177,3 +165,5 @@ st.markdown("""
 
 💡 **Takeaway:** This model reflects how **basketball shots** are affected based on various features such as shot distance and defender proximity while still considering in-game context.
 """)
+
+So the reset inputs is supposed to reset it but here its not resetting but making just hiding the predcited result when clicked
