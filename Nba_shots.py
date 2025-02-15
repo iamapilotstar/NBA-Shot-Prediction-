@@ -117,7 +117,7 @@ with col1:
 
 # Reset button to clear all inputs
 with col2:
-    if st.button("🔄 Reset Inputs"):
+    if st.button("🔄 Reset Predictions"):
         for key in st.session_state.keys():
             del st.session_state[key]
         st.rerun()
