@@ -3,6 +3,7 @@
 This NBA Shot Prediction App uses Machine Learning to predict whether a shot will be Made or Missed based on various shot-related and contextual factors.
 
 Live Demo: https://shotspredict.streamlit.app/
+
 Insights and Visualizations: https://showcaseapp.streamlit.app/
 
 📊 Model Used: Gradient Boosting Classifier- Accuracy: 62% (Reflecting the inherent uncertainty of shot-making and game outcomes in basketball).
