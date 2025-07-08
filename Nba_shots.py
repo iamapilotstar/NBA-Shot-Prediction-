@@ -17,6 +17,8 @@ st.markdown("**⬅️ Use the sidebar on the left to switch between prediction a
 
 st.markdown("**⬇️ Scroll or swipe down in the Model Insights section below the images to view detailed explanations.**")
 
+st.markdown("**⬇️ swipe or use the arrow keys left/right in the Model Insights section to navigate between tabs.**")
+
 # Load model and scaler with error handling
 @st.cache_data
 def load_model_and_scaler():
