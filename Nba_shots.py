@@ -17,7 +17,7 @@ st.markdown("**⬅️ Use the sidebar on the left to switch between prediction a
 
 st.markdown("**⬅️➡️ swipe or use the arrow keys left/right in the Model Insights section to navigate between tabs.**")
 
-st.markdown("**⬇️ Scroll or swipe down in the Model Insights section below the images and click on the **Click to see detailed analysis of data distributions**.**")
+st.markdown("**⬇️ To see the insights scroll or swipe down in the Model Insights section below the images and click on the **Click to see detailed analysis of data distributions**.**")
 
 
 
