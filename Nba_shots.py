@@ -15,9 +15,11 @@ st.set_page_config(
 
 st.markdown("**⬅️ Use the sidebar on the left to switch between prediction and model insights.**")
 
-st.markdown("**⬇️ Scroll or swipe down in the Model Insights section below the images to view detailed explanations.**")
-
 st.markdown("**⬅️➡️ swipe or use the arrow keys left/right in the Model Insights section to navigate between tabs.**")
+
+st.markdown("**⬇️ Scroll or swipe down in the Model Insights section below the images to and click on the "Click to see detailed analysis of data distributions".**")
+
+
 
 # Load model and scaler with error handling
 @st.cache_data
