@@ -173,8 +173,9 @@ elif view_option == "📊 Model Insights":
                 st.error(f"⚠️ Image file not found: {img_file}")
 
             if tab_key == "Height vs Shot Distance":
-                st.write("- **Taller players tend to take shots closer to the basket** as they have a natural advantage near the rim.")
-                st.write("- **There is a slight positive correlation** between height and shot distance, indicating that taller players have an **efficiency edge near the basket**.")
+                with st.expander("👉 Click to see detailed analysis of data distributions"):
+                    st.write("- **Taller players tend to take shots closer to the basket** as they have a natural advantage near the rim.")
+                    st.write("- **There is a slight positive correlation** between height and shot distance, indicating that taller players have an **efficiency edge near the basket**.")
             
             elif tab_key == "Weight vs Shot Distance":
                 st.write("- **Heavier players** generally take shots closer to the basket, likely due to their dominant presence on the court.")
