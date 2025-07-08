@@ -153,11 +153,11 @@ elif view_option == "📊 Model Insights":
         "Simpson's Paradox - Position C": "Simpsons Paradox for Position C.png",
         "Simpson's Paradox - Position PG": "Simpsons Paradox for Position PG.png",
         "Evolution of Shot Types": "Evolution of Shot types.png",
-        "Feature Correlation Heatmap": "Correlation Heatmap.png",
-        "Model Comparison - Test Accuracy": "Model Accuracy.png",
         "Confusion Matrix": "Confusion matrix.png",
+        "Model Comparison - Test Accuracy": "Model Accuracy.png",
         "ROC Curve": "AUC-ROC.png",
-        "Feature Importance": "feature_importance.png"
+        "Feature Importance": "feature_importance.png",
+        "Feature Correlation Heatmap": "Correlation Heatmap.png"
     }
 
     tab_labels = list(image_paths.keys())
