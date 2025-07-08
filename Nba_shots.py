@@ -13,6 +13,10 @@ st.set_page_config(
     layout="wide"
 )
 
+st.markdown("**⬅️ Use the sidebar on the left to switch between prediction and model insights.**")
+
+st.markdown("**⬇️ Scroll or swipe down in the Model Insights section below the images to view detailed explanations.**")
+
 # Load model and scaler with error handling
 @st.cache_data
 def load_model_and_scaler():
@@ -134,11 +138,6 @@ if view_option == "🏀 Shot Prediction":
     ### **Model Information**
     - **Algorithm:** Gradient Boosting Classifier
     - **Trained on:** NBA Shot and Information Dataset              
-    """)
-
-    st.sidebar.header("📊 Model Performance")
-    st.sidebar.markdown("""
-    - **Algorithm Used:** Gradient Boosting
     """)
 
 elif view_option == "📊 Model Insights":
