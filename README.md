@@ -78,18 +78,19 @@ Using this information, the model predicts the probability of whether the shot w
 NBA-Shot-Prediction/
 │
 ├── App and Analysis/
-│   ├── shot_app.py
-│   └── NBA_Shot_Analysis.ipynb
+│   ├── Nba_shots.py
+│   └── Machine_Learning_for_sports_data_portfolio.ipynb
 │
 ├── Models/
-│   ├── gradient_boosting_model.pkl
-│   └── scaler.pkl
+│   ├── Gradient Boosting.pkl
+│   └── StandardScaler.pkl
 │
 ├── Images/
-│   ├── shap_summary.png
-│   ├── feature_importance.png
-│   └── probability_chart.png
+│   ├── Evolution of Shot types.png
+│   ├── Height vs Shot distance.png
+│   └── Simpsons Paradox for overall.png
+    └── Model Accuracy.png
 │
-├── requirements.txt
+├── Requirements.txt
 └── README.md
 
