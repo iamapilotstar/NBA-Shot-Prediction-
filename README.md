@@ -1,14 +1,38 @@
-﻿# NBA-Shot-Prediction-
-🏀 NBA Shot Prediction App
-This NBA Shot Prediction App uses Machine Learning to predict whether a shot will be Made or Missed based on various shot-related and contextual factors.
+# 🏀 CourtVision: Real-Time NBA Shot Prediction & Analysis Tool
+
+##💡The Problem:
+
+Basketball teams and analysts need deeper insights into shot selection and player tendencies to enhance strategy and improve scoring efficiency. Traditional stats often miss the context behind shot success.
+
+## 🔧The Solution
+
+I developed a machine learning-powered web application that predicts whether an NBA shot will be successful based on player, shot, and game context. The model uses Gradient Boosting and is deployed via Streamlit, with SHAP-based interpreta
+
 
 Live Demo: https://shotspredict.streamlit.app/
 
 Insights and Visualizations: https://showcaseapp.streamlit.app/
 
+## 📌 Key Results
+✅ Model Accuracy: 62.4% on real-world NBA data (strong given the randomness of in-game action)
+
+✅ Algorithm: Gradient Boosting (outperformed Logistic Regression, Random Forest)
+
+## 🧪 Features:
+
+• Shot Distance & Angle
+
+• Defender Distance
+
+• Touch Time
+
+• Shot Clock Pressure
+
+• Player Experience & Attributes
+
 📊 Model Used: Gradient Boosting Classifier- Accuracy: 62% (Reflecting the inherent uncertainty of shot-making and game outcomes in basketball).
 
-📌 Project Overview
+## 📌 Project Overview
 Basketball teams and analysts constantly look for ways to improve shot selection and maximize scoring efficiency. This application helps users analyze key shot factors such as:
 •	Shot Distance (How far the shot is)
 •	Defender Distance (How close the nearest defender is)
@@ -17,7 +41,7 @@ Basketball teams and analysts constantly look for ways to improve shot selection
 
 Using this information, the model predicts the probability of whether the shot will be made or missed.
 
-📊 How It Works
+## ⚙️ How It Works
 
 •	User Inputs Shot Details → Distance, defender proximity, shot clock, shot difficulty etc.
 •	Data is Scaled & Processed → Features are transformed to match the trained model.
@@ -25,21 +49,16 @@ Using this information, the model predicts the probability of whether the shot w
 •	Displays Probability & Visualization → Shows a probability bar chart for better insight.
 
 
-Key Findings:
+## Key Findings:
 •	 Shot Distance & Defender Proximity are the strongest predictors of shot success.
 •	 Game context (shot difficulty, shot clock, touch time) plays a role but is less dominant.
 •	 Player attributes (height, weight, experience) surprisingly have minimal impact.
 •	 Home-court advantage has negligible influence on shot success.
 
 
-Features
-•	User-friendly interface built using Streamlit.
-•	Real-time shot prediction using a trained Gradient Boosting Model.
-•	Feature importance visualization to understand which factors impact shot success.
-•	Interactive sliders for selecting shot parameters.
 
 
-Tech Stack
+## Tech Stack
 •	Machine Learning: Scikit-Learn, Gradient Boosting Classifier
 •	Web App Framework: Streamlit
 •	Data Visualization: Plotly, Seaborn, Matplotlib
@@ -47,7 +66,30 @@ Tech Stack
 
 ⚠️ Please refer requirements.txt file.
 
-📢 Future Improvements:
+## 📢 Future Improvements:
 •	Add More richer features (e.g., Player Fatigue, Defensive Intensity)
 •	Use Deep Learning models (LSTMs or Neural Networks for advanced modeling)
 •	Incorporate more advanced hyperparameter tuning techniques.
+
+
+## 📁 Folder Structure
+
+```bash
+NBA-Shot-Prediction/
+│
+├── App and Analysis/
+│   ├── shot_app.py
+│   └── NBA_Shot_Analysis.ipynb
+│
+├── Models/
+│   ├── gradient_boosting_model.pkl
+│   └── scaler.pkl
+│
+├── Images/
+│   ├── shap_summary.png
+│   ├── feature_importance.png
+│   └── probability_chart.png
+│
+├── requirements.txt
+└── README.md
+
