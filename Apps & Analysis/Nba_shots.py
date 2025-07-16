@@ -24,8 +24,8 @@ st.markdown("**⬇️ To see the insights scroll or swipe down in the Model Insi
 # Load model and scaler with error handling
 @st.cache_data
 def load_model_and_scaler():
-    model_path = "Gradient Boosting.pkl"
-    scaler_path = "StandardScaler.pkl"
+    model_path = "Models/Gradient Boosting.pkl"
+    scaler_path = "Models/StandardScaler.pkl"
 
     if not os.path.exists(model_path) or not os.path.exists(scaler_path):
         st.error("⚠️ Model or scaler file not found! Ensure they are in the correct directory.")
@@ -148,18 +148,18 @@ elif view_option == "📊 Model Insights":
     st.markdown("### 📈 Deep Dive: How the Model Learns from Clinical Data")
 
     image_paths = {
-        "Height vs Shot Distance": "Height vs Shot distance.png",
-        "Weight vs Shot Distance": "Weight vs Shot distance.png",
-        "Position vs Shot Distance": "Position vs Shot disance.png",
-        "Simpson's Paradox - Overall": "Simpsons Paradox for overall.png",
-        "Simpson's Paradox - Position C": "Simpsons Paradox for Position C.png",
-        "Simpson's Paradox - Position PG": "Simpsons Paradox for Position PG.png",
-        "Evolution of Shot Types": "Evolution of Shot types.png",
-        "Confusion Matrix": "Confusion matrix.png",
-        "Model Comparison - Test Accuracy": "Model Accuracy.png",
-        "ROC Curve": "AUC-ROC.png",
-        "Feature Importance": "feature_importance.png",
-        "Feature Correlation Heatmap": "Correlation Heatmap.png"
+        "Height vs Shot Distance": "Images/Height vs Shot distance.png",
+        "Weight vs Shot Distance": "Images/Weight vs Shot distance.png",
+        "Position vs Shot Distance": "Images/Position vs Shot disance.png",
+        "Simpson's Paradox - Overall": "Images/Simpsons Paradox for overall.png",
+        "Simpson's Paradox - Position C": "Images/Simpsons Paradox for Position C.png",
+        "Simpson's Paradox - Position PG": "Images/Simpsons Paradox for Position PG.png",
+        "Evolution of Shot Types": "Images/Evolution of Shot types.png",
+        "Confusion Matrix": "Images/Confusion matrix.png",
+        "Model Comparison - Test Accuracy": "Images/Model Accuracy.png",
+        "ROC Curve": "Images/AUC-ROC.png",
+        "Feature Importance": "Images/feature_importance.png",
+        "Feature Correlation Heatmap": "Images/Correlation Heatmap.png"
     }
 
     tab_labels = list(image_paths.keys())
