@@ -1,6 +1,6 @@
 # 🏀 CourtVision: Real-Time NBA Shot Prediction & Analysis Tool
 
-##💡The Problem:
+## 💡The Problem:
 
 Basketball teams and analysts need deeper insights into shot selection and player tendencies to enhance strategy and improve scoring efficiency. Traditional stats often miss the context behind shot success.
 
