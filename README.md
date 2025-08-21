@@ -8,9 +8,9 @@ Basketball teams and analysts need deeper insights into shot selection and playe
 
 I developed a machine learning-powered web application that predicts whether an NBA shot will be successful based on player, shot, and game context. The model uses Gradient Boosting and is deployed via Streamlit, with SHAP-based interpreta
 
-Live Demo: https://nba-shot-prediction-w1ai.onrender.com
+Live Demo: https://nba-shot-prediction.onrender.com
 
-Report: https://bit.ly/3IuJY06 -Real-Time-NBA-Shot-Prediction.pdf
+Report: https://drive.google.com/file/d/1YP6NxhgzweRtMjb5KHmNP1lA2ySXJXrX/view?usp=sharing -Real-Time-NBA-Shot-Prediction.pdf
 
 ## 📌 Key Results
 ✅ Model Accuracy: 62.4% on real-world NBA data (strong given the randomness of in-game action)
@@ -92,4 +92,5 @@ NBA-Shot-Prediction/
 │
 ├── Requirements.txt
 └── README.md
+
 
