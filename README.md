@@ -10,7 +10,7 @@ I developed a machine learning-powered web application that predicts whether an 
 
 Live Demo: https://nba-shot-prediction.onrender.com
 
-Report: https://drive.google.com/file/d/1YP6NxhgzweRtMjb5KHmNP1lA2ySXJXrX/view?usp=sharing -Real-Time-NBA-Shot-Prediction.pdf
+Report: https://bit.ly/3IuJY06 -Real-Time-NBA-Shot-Prediction.pdf
 
 ## 📌 Key Results
 ✅ Model Accuracy: 62.4% on real-world NBA data (strong given the randomness of in-game action)
@@ -92,5 +92,6 @@ NBA-Shot-Prediction/
 │
 ├── Requirements.txt
 └── README.md
+
 
 
